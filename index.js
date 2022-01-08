@@ -17,24 +17,26 @@ class FileExtensionData {
       doc.querySelector(".card-body").querySelectorAll("p")
     ).map((e) => e.textContent);
 
-    let whatIsExtension =
-      PCardData[1] + "\n" + PCardData[2]
+    let whatIsExtension = PCardData[1] + "\n" + PCardData[2];
 
     let HowToOpenExtension = PCardData[5] ? PCardData[4] : PCardData[3];
 
     let apps = Array.from(doc.querySelectorAll(".card-body")).reverse()[0];
 
-    let allApps = [...Array.from(doc.querySelectorAll("table.table[data-page=1] tr")).map(
-      (e) => e.textContent.replace(/User submitted/g, "")
-    ),...Array.from(doc.querySelectorAll("table.table[data-page=2] tr")).map(
+    let allApps = [
+      ...Array.from(doc.querySelectorAll("table.table[data-page=1] tr")).map(
         (e) => e.textContent.replace(/User submitted/g, "")
-      )]
+      ),
+      ...Array.from(doc.querySelectorAll("table.table[data-page=2] tr")).map(
+        (e) => e.textContent.replace(/User submitted/g, "")
+      ),
+    ];
 
     return {
-        what_is: whatIsExtension,
-        how_to_use: HowToOpenExtension,
-        common_apps_for: allApps
-    }
+      what_is: whatIsExtension,
+      how_to_use: HowToOpenExtension,
+      common_apps_for: allApps,
+    };
   }
 
   /**
@@ -50,4 +52,3 @@ class FileExtensionData {
     else return true;
   }
 }
-
